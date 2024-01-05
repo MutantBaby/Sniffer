@@ -1,21 +1,38 @@
-use clap::Parser;
-use std::net::IpAddr;
+use std::{
+    env::{self, args},
+    net::{AddrParseError, IpAddr},
+    str::FromStr,
+};
 
-/// To monitoring & capturing all data packets passing through given network
-#[derive(Parser, Debug)]
 struct Cli {
-    /// The Flag for help
     flag: String,
-    /// The ip-address to listen on
-    ipadder: IpAddr,
-    /// Number of threads to use
     threads: u16,
+    ipadder: IpAddr,
 }
 
-impl Cli {}
+impl Cli {
+    // fn new(args: &[String]) -> Result<Cli, &'static str> {
+    //     if args.len() < 2 {
+    //         return Err("Not enough arguments");
+    //     } else if args.len() > 4 {
+    //         return Err("Too many arguments");
+    //     }
+
+    //     let ip: String = args[1].clone();
+    //     if let Ok(ipadder) = IpAddr::from_str(&ip) {
+    //         Ok(Cli {
+    //             flag: String::from(""),
+    //             threads: 4,
+    //             ipadder,
+    //         })
+    //     } else {
+    //         Err("Error in handling arguments")
+    //     }
+    // }
+}
 
 fn main() {
-    let args: Cli = Cli::parse();
+    let args: Vec<String> = env::args().collect();
 
     println!("Args {:?}", args);
 }
