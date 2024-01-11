@@ -1,4 +1,3 @@
-use core::num;
 use std::{
     env::{self},
     io::{self, Write},
@@ -109,6 +108,19 @@ fn main() {
         thread::spawn(move || {
             scan(x_transmitter, i, arguments.ipaddr, num_threads);
         });
+    }
+
+    let mut out = vec![];
+    drop(x_transmitter);
+
+    for p in x_receiver {
+        out.push(p);
+    }
+
+    println!(" ");
+    out.sort();
+    for v in out {
+        println!("{} is open", v);
     }
 
     println!("Args {:?}", args);
