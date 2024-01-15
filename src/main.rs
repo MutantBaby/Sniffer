@@ -40,6 +40,7 @@ fn start_port_guard(input: &u16) -> bool {
     *input > 0
 }
 
+#[allow(warnings)]
 fn end_port_guard(input: &u16) -> bool {
     *input <= 65535
 }
